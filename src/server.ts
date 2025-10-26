@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://your-frontend-domain.vercel.app'], // Add your frontend URL
+  origin: ['http://localhost:5173', 'https://project-flow-xi.vercel.app'], // Add your frontend URL
   credentials: true
 }));
 app.use(express.json());
