@@ -30,6 +30,17 @@ const taskSchema = new Schema<ITask>({
   tags: { type: [String], default: [] },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true, // Automatically manage createdAt and updatedAt
+  toJSON: {
+    virtuals: true,
+    transform: function(doc, ret) {
+      ret.id = ret._id.toString();
+      delete ret._id;
+      delete ret.__v;
+      return ret;
+    }
+  }
 });
 
 export default model<ITask>('Task', taskSchema);
