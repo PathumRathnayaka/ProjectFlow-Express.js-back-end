@@ -34,10 +34,10 @@ const taskSchema = new Schema<ITask>({
   timestamps: true, // Automatically manage createdAt and updatedAt
   toJSON: {
     virtuals: true,
-    transform: function(doc, ret) {
-      ret.id = ret._id.toString();
-      delete ret._id;
-      delete ret.__v;
+    transform: function(_doc, ret) {
+      (ret as any).id = ret._id.toString();
+      delete (ret as any)._id;
+      delete (ret as any).__v;
       return ret;
     }
   }

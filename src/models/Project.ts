@@ -28,6 +28,17 @@ const projectSchema = new Schema<IProject>({
   folderId: { type: String },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true,
+  toJSON: {
+    virtuals: true,
+    transform: function(_doc, ret) {
+      (ret as any).id = ret._id.toString();
+      delete (ret as any)._id;
+      delete (ret as any).__v;
+      return ret;
+    }
+  }
 });
 
 export default model<IProject>('Project', projectSchema);

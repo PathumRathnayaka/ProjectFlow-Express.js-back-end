@@ -20,6 +20,17 @@ const memberSchema = new Schema<IMember>({
   department: { type: String, required: true },
   isActive: { type: Boolean, default: true },
   joinedAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true,
+  toJSON: {
+    virtuals: true,
+    transform: function(_doc, ret) {
+      (ret as any).id = ret._id.toString();
+      delete (ret as any)._id;
+      delete (ret as any).__v;
+      return ret;
+    }
+  }
 });
 
 export default model<IMember>('Member', memberSchema);
