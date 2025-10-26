@@ -1,3 +1,4 @@
+
 {
   "version": 2,
   "builds": [
@@ -11,9 +12,5 @@
       "src": "/(.*)",
       "dest": "src/server.ts"
     }
-  ],
-  "env": {
-    "MONGO_URI": "@mongo_uri",
-    "PORT": "8080"
-  }
+  ]
 }
